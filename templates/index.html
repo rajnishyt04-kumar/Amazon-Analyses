@@ -1,0 +1,60 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amazon India | Sales Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">a</div><div><b>amazon</b><span>SALES INTELLIGENCE</span></div></div>
+    <div class="nav-label">WORKSPACE</div>
+    <div class="nav-item active"><span class="nav-icon">▦</span> Overview</div>
+    <div class="nav-label section-gap">ANALYTICS SCOPE</div>
+    <div class="scope-item"><i class="dot sales"></i> Sales performance</div>
+    <div class="scope-item"><i class="dot profit"></i> Profit performance</div>
+    <div class="scope-item"><i class="dot product"></i> Product performance</div>
+    <div class="sidebar-bottom"><div class="status-dot"></div><div><b>Analytics workspace</b><span>Tasks 1 &amp; 2 only</span></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">BUSINESS OVERVIEW <span> / INDIA</span></div><h1>Sales performance</h1><p class="subtitle">A clear view of revenue, profitability and product performance.</p></div>
+      <div class="top-actions"><div class="live-pill"><span></span> DATA CONNECTED</div><button class="ghost-btn" id="resetBtn">↺ Reset filters</button></div>
+    </header>
+    <section class="filter-panel">
+      <div class="filter-heading"><div><b>Explore your data</b><span>Filters update all KPIs and charts</span></div><div class="filter-hint">INTERACTIVE FILTERS</div></div>
+      <div class="filters">
+        <label>Category<select id="categoryFilter"><option value="All">All categories</option></select></label>
+        <label>Product<select id="productFilter"><option value="All">All products</option></select></label>
+        <label>From date<input id="startDate" type="date"></label>
+        <label>To date<input id="endDate" type="date"></label>
+        <div class="upload-wrap"><input type="file" id="fileInput" accept=".xlsx,.xls,.csv" hidden><button class="upload-btn" id="uploadBtn">↑ Upload dataset</button><span id="uploadStatus">XLSX · XLS · CSV · max 20 MB</span></div>
+      </div>
+      <div id="message" class="message" role="status"></div>
+    </section>
+    <section class="section-head"><div><h2>Performance at a glance</h2><p>Key indicators across the selected data</p></div><div class="period-chip" id="rowCount">— records</div></section>
+    <section class="kpi-grid">
+      <article class="kpi-card"><div class="kpi-top"><span>Total sales</span><span class="kpi-icon orange">₹</span></div><div class="kpi-value" id="salesKpi">—</div><div class="kpi-foot"><span class="tiny-dot orange-bg"></span> Gross sales revenue</div></article>
+      <article class="kpi-card"><div class="kpi-top"><span>Total profit</span><span class="kpi-icon green">↗</span></div><div class="kpi-value" id="profitKpi">—</div><div class="kpi-foot"><span class="tiny-dot green-bg"></span> Profit contribution</div></article>
+      <article class="kpi-card"><div class="kpi-top"><span>Total orders</span><span class="kpi-icon blue">▤</span></div><div class="kpi-value" id="ordersKpi">—</div><div class="kpi-foot">Unique order IDs when available</div></article>
+      <article class="kpi-card"><div class="kpi-top"><span>Units sold</span><span class="kpi-icon violet">□</span></div><div class="kpi-value" id="unitsKpi">—</div><div class="kpi-foot">Sum of recorded quantities</div></article>
+      <article class="kpi-card"><div class="kpi-top"><span>Average order value</span><span class="kpi-icon amber">₹</span></div><div class="kpi-value" id="aovKpi">—</div><div class="kpi-foot">Sales ÷ unique orders</div></article>
+      <article class="kpi-card"><div class="kpi-top"><span>Profit margin</span><span class="kpi-icon teal">%</span></div><div class="kpi-value" id="marginKpi">—</div><div class="kpi-foot">Profit ÷ sales revenue</div></article>
+    </section>
+    <section class="charts-grid">
+      <article class="panel wide"><div class="panel-head"><div><h3>Monthly sales &amp; profit</h3><p>Revenue and profit movement over time</p></div><span class="chart-tag">MONTHLY TREND</span></div><div id="trendChart" class="chart trend-chart"></div></article>
+      <article class="panel"><div class="panel-head"><div><h3>Profit margin</h3><p>Share of revenue retained as profit</p></div></div><div id="marginChart" class="chart margin-chart"></div><div class="chart-note">Margin is calculated from aggregate profit and sales.</div></article>
+      <article class="panel"><div class="panel-head"><div><h3>Sales by category</h3><p>Revenue contribution by category</p></div></div><div id="categorySalesChart" class="chart"></div></article>
+      <article class="panel"><div class="panel-head"><div><h3>Profit by category</h3><p>Profit contribution by category</p></div></div><div id="categoryProfitChart" class="chart"></div></article>
+      <article class="panel"><div class="panel-head"><div><h3>Units sold by category</h3><p>Volume contribution by category</p></div></div><div id="categoryUnitsChart" class="chart"></div></article>
+      <article class="panel wide"><div class="panel-head"><div><h3>Top 10 products by sales</h3><p>Products ranked by total sales revenue</p></div><span class="chart-tag">TOP PRODUCTS</span></div><div id="topProductsChart" class="chart product-chart"></div></article>
+    </section>
+    <footer>Amazon India Sales Analytics <span>Descriptive analytics · Tasks 1 &amp; 2</span></footer>
+  </main>
+</div>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body></html>
